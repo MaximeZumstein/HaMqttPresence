@@ -2,12 +2,13 @@ FROM node:19-alpine
 
 RUN apk add nmap
 
-COPY yarn.lock /app/
+WORKDIR /app
+
+COPY package.json yarn.lock ./
 
 RUN yarn install
 
-COPY . /app
-WORKDIR /app
+COPY . .
 
 USER node
 
